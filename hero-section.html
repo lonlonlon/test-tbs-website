@@ -28,10 +28,17 @@
       --color-success-soft: rgba(0, 255, 150, 0.12);
       --color-border: rgba(0, 90, 61, 0.08);
       --color-shadow: rgba(0, 90, 61, 0.06);
+      --color-footer-bg: #001f15;
+      --color-footer-border: rgba(255, 255, 255, 0.07);
+      --color-footer-text: rgba(255, 255, 255, 0.55);
+      --color-footer-heading: rgba(255, 255, 255, 0.9);
 
       /* Tembusu Finance Typography */
       --font-display: 'Playfair Display', Georgia, serif;
       --font-body: 'Inter', Arial, sans-serif;
+
+      /* Layout */
+      --max-width: 1240px;
 
       /* Spacing */
       --space-xs: 0.25rem;
@@ -64,13 +71,20 @@
       box-sizing: border-box;
     }
 
+    /* ─── Top-level content width constraint ─── */
+    html {
+      background: var(--color-beige);
+      overflow-x: hidden;
+    }
+
     body {
       font-family: var(--font-body);
       background: var(--color-beige);
       color: var(--color-text-primary);
+      max-width: var(--max-width);
+      margin: 0 auto;
       -webkit-font-smoothing: antialiased;
       -moz-osx-font-smoothing: grayscale;
-      overflow-x: hidden;
     }
 
     /* ─── Navigation ─── */
@@ -174,6 +188,7 @@
       align-items: center;
       padding: var(--space-3xl) var(--space-4xl) var(--space-4xl);
       min-height: calc(100vh - 80px);
+      max-height: 1000px;
       position: relative;
     }
 
@@ -648,6 +663,235 @@
       margin-top: 1px;
     }
 
+    /* ─── Footer ─── */
+    .footer {
+      /* Full-bleed: break out of body max-width */
+      width: 100vw;
+      position: relative;
+      left: 50%;
+      transform: translateX(-50%);
+      background: var(--color-footer-bg);
+      margin-top: auto;
+    }
+
+    .footer-inner {
+      max-width: var(--max-width);
+      margin: 0 auto;
+      padding: var(--space-3xl) var(--space-4xl) 0;
+    }
+
+    /* Footer Top: Brand + Nav columns */
+    .footer-top {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-4xl);
+      padding-bottom: var(--space-3xl);
+    }
+
+    /* Brand column */
+    .footer-brand {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-lg);
+    }
+
+    .footer-logo {
+      font-family: var(--font-display);
+      font-size: 1.25rem;
+      font-weight: 700;
+      color: var(--color-white);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+    }
+
+    .footer-logo-icon {
+      width: 30px;
+      height: 30px;
+      background: var(--color-emerald);
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      flex-shrink: 0;
+    }
+
+    .footer-logo-icon::before {
+      content: '';
+      position: absolute;
+      width: 13px;
+      height: 13px;
+      border: 2px solid var(--color-neon);
+      border-radius: 50%;
+    }
+
+    .footer-logo-icon::after {
+      content: '';
+      position: absolute;
+      width: 5px;
+      height: 5px;
+      background: var(--color-neon);
+      border-radius: 50%;
+    }
+
+    .footer-tagline {
+      font-size: 0.85rem;
+      line-height: 1.65;
+      color: var(--color-footer-text);
+      max-width: 240px;
+    }
+
+    .footer-mas-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-sm);
+      background: rgba(0, 255, 150, 0.08);
+      border: 1px solid rgba(0, 255, 150, 0.15);
+      border-radius: var(--radius-full);
+      padding: 6px 12px;
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--color-neon);
+      letter-spacing: 0.04em;
+      width: fit-content;
+    }
+
+    .footer-mas-badge::before {
+      content: '';
+      width: 5px;
+      height: 5px;
+      background: var(--color-neon);
+      border-radius: 50%;
+    }
+
+    /* Social icons */
+    .footer-social {
+      display: flex;
+      align-items: center;
+      gap: var(--space-sm);
+      margin-top: var(--space-sm);
+    }
+
+    .footer-social-link {
+      width: 36px;
+      height: 36px;
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.06);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--color-footer-text);
+      text-decoration: none;
+      transition: all var(--duration-fast) ease;
+    }
+
+    .footer-social-link:hover {
+      background: rgba(0, 255, 150, 0.12);
+      border-color: rgba(0, 255, 150, 0.25);
+      color: var(--color-neon);
+      transform: translateY(-2px);
+    }
+
+    .footer-social-link svg {
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Nav columns grid */
+    .footer-nav-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: var(--space-xl);
+    }
+
+    .footer-nav-col {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .footer-nav-heading {
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--color-footer-heading);
+      margin-bottom: var(--space-xs);
+    }
+
+    .footer-nav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-nav-list a {
+      font-size: 0.82rem;
+      font-weight: 400;
+      color: var(--color-footer-text);
+      text-decoration: none;
+      line-height: 1.4;
+      transition: color var(--duration-fast) ease;
+    }
+
+    .footer-nav-list a:hover {
+      color: var(--color-neon);
+    }
+
+    /* Footer divider */
+    .footer-divider {
+      height: 1px;
+      background: var(--color-footer-border);
+      margin: 0 var(--space-4xl);
+    }
+
+    /* Footer Bottom */
+    .footer-bottom {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: var(--space-lg) var(--space-4xl) var(--space-xl);
+    }
+
+    .footer-copyright {
+      font-size: 0.75rem;
+      color: rgba(255, 255, 255, 0.3);
+      line-height: 1.5;
+    }
+
+    .footer-copyright strong {
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 500;
+    }
+
+    .footer-legal-links {
+      display: flex;
+      align-items: center;
+      gap: var(--space-lg);
+      list-style: none;
+    }
+
+    .footer-legal-links a {
+      font-size: 0.72rem;
+      color: rgba(255, 255, 255, 0.3);
+      text-decoration: none;
+      transition: color var(--duration-fast) ease;
+    }
+
+    .footer-legal-links a:hover {
+      color: rgba(255, 255, 255, 0.6);
+    }
+
+    .footer-legal-links li:not(:last-child)::after {
+      content: '·';
+      margin-left: var(--space-lg);
+      color: rgba(255, 255, 255, 0.15);
+    }
+
     /* ─── Keyframes ─── */
     @keyframes fadeDown {
       from { opacity: 0; transform: translateY(-12px); }
@@ -719,6 +963,11 @@
       }
       .hero-headline { font-size: clamp(2.25rem, 4vw, 3rem); }
       .dashboard-card { width: 360px; padding: var(--space-xl); }
+      .footer-inner { padding: var(--space-2xl) var(--space-xl) 0; }
+      .footer-top { grid-template-columns: 240px 1fr; gap: var(--space-2xl); }
+      .footer-nav-grid { grid-template-columns: repeat(5, 1fr); gap: var(--space-md); }
+      .footer-divider { margin: 0 var(--space-xl); }
+      .footer-bottom { padding: var(--space-lg) var(--space-xl) var(--space-xl); }
     }
 
     @media (max-width: 768px) {
@@ -726,6 +975,7 @@
         grid-template-columns: 1fr;
         text-align: center;
         padding: var(--space-xl) var(--space-lg) var(--space-2xl);
+        max-height: none;
       }
       .hero-copy { max-width: 100%; }
       .hero-description { max-width: 100%; }
@@ -736,6 +986,19 @@
       .floating-notification { right: -8px; top: -12px; }
       .floating-stat { left: -8px; bottom: 30px; }
       .nav-links { display: none; }
+      .footer-top {
+        grid-template-columns: 1fr;
+        gap: var(--space-2xl);
+      }
+      .footer-nav-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: var(--space-xl) var(--space-lg);
+      }
+      .footer-bottom {
+        flex-direction: column;
+        gap: var(--space-md);
+        text-align: center;
+      }
     }
   </style>
 </head>
@@ -846,29 +1109,20 @@
         <!-- Animated Chart -->
         <div class="chart-container">
           <svg class="chart-svg" viewBox="0 0 360 120" preserveAspectRatio="none">
-            <!-- Grid lines -->
             <line class="chart-grid-line" x1="0" y1="30" x2="360" y2="30"/>
             <line class="chart-grid-line" x1="0" y1="60" x2="360" y2="60"/>
             <line class="chart-grid-line" x1="0" y1="90" x2="360" y2="90"/>
-
-            <!-- Gradient fill -->
             <defs>
               <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
                 <stop offset="0%" stop-color="#005a3d" stop-opacity="0.08"/>
                 <stop offset="100%" stop-color="#005a3d" stop-opacity="0"/>
               </linearGradient>
             </defs>
-
-            <!-- Area fill (appears after line draws) -->
             <path class="chart-area"
               d="M0,95 C40,90 60,85 90,78 C120,71 140,70 160,65 C180,60 200,48 220,42 C240,36 270,22 310,15 C330,11 350,8 360,5 L360,120 L0,120 Z"
               fill="url(#chartGrad)"/>
-
-            <!-- Line path -->
             <path class="chart-line"
               d="M0,95 C40,90 60,85 90,78 C120,71 140,70 160,65 C180,60 200,48 220,42 C240,36 270,22 310,15 C330,11 350,8 360,5"/>
-
-            <!-- Key data points -->
             <circle class="chart-dot" cx="90" cy="78" r="0"/>
             <circle class="chart-dot" cx="220" cy="42" r="0"/>
             <circle class="chart-dot" cx="360" cy="5" r="0"/>
@@ -884,27 +1138,145 @@
           <span>Nov</span>
         </div>
 
-        <!-- Bottom Metrics -->
         <div class="dashboard-metrics">
           <div class="metric-card">
             <div class="metric-label">Loan Utilisation</div>
             <div class="metric-value">72%</div>
-            <div class="metric-bar">
-              <div class="metric-bar-fill"></div>
-            </div>
+            <div class="metric-bar"><div class="metric-bar-fill"></div></div>
           </div>
           <div class="metric-card">
             <div class="metric-label">Growth Score</div>
             <div class="metric-value">85/100</div>
-            <div class="metric-bar">
-              <div class="metric-bar-fill"></div>
-            </div>
+            <div class="metric-bar"><div class="metric-bar-fill"></div></div>
           </div>
         </div>
       </div>
 
     </div>
   </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+
+      <!-- Top: Brand + Nav columns -->
+      <div class="footer-top">
+
+        <!-- Brand column -->
+        <div class="footer-brand">
+          <a href="#" class="footer-logo">
+            <div class="footer-logo-icon"></div>
+            Tembusu Finance
+          </a>
+          <p class="footer-tagline">Trusted loan solutions for every stage of your financial journey in Singapore.</p>
+          <div class="footer-mas-badge">MAS Licensed Moneylender</div>
+
+          <!-- Social media -->
+          <div class="footer-social">
+            <!-- Facebook -->
+            <a href="#" class="footer-social-link" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" class="footer-social-link" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+              </svg>
+            </a>
+            <!-- TikTok -->
+            <a href="#" class="footer-social-link" aria-label="TikTok">
+              <svg viewBox="0 0 24 24" fill="currentColor">
+                <path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0 .54.04.79.1V9.01a6.27 6.27 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.75a8.22 8.22 0 004.81 1.53V6.82a4.85 4.85 0 01-1.04-.13z"/>
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Navigation columns -->
+        <nav class="footer-nav-grid" aria-label="Footer navigation">
+
+          <!-- Business Loans -->
+          <div class="footer-nav-col">
+            <h3 class="footer-nav-heading">Business Loans</h3>
+            <ul class="footer-nav-list">
+              <li><a href="#">SME Loans</a></li>
+              <li><a href="#">Working Capital</a></li>
+              <li><a href="#">Equipment Financing</a></li>
+              <li><a href="#">Invoice Financing</a></li>
+              <li><a href="#">Trade Finance</a></li>
+            </ul>
+          </div>
+
+          <!-- Personal Loans -->
+          <div class="footer-nav-col">
+            <h3 class="footer-nav-heading">Personal Loans</h3>
+            <ul class="footer-nav-list">
+              <li><a href="#">Personal Instalment</a></li>
+              <li><a href="#">Credit Line</a></li>
+              <li><a href="#">Debt Consolidation</a></li>
+              <li><a href="#">Study Loans</a></li>
+              <li><a href="#">Foreigner Loans</a></li>
+            </ul>
+          </div>
+
+          <!-- Mortgage -->
+          <div class="footer-nav-col">
+            <h3 class="footer-nav-heading">Mortgage</h3>
+            <ul class="footer-nav-list">
+              <li><a href="#">Home Purchase</a></li>
+              <li><a href="#">Refinancing</a></li>
+              <li><a href="#">HDB Mortgage</a></li>
+              <li><a href="#">Commercial Property</a></li>
+              <li><a href="#">Bridging Loans</a></li>
+            </ul>
+          </div>
+
+          <!-- Resources -->
+          <div class="footer-nav-col">
+            <h3 class="footer-nav-heading">Resources</h3>
+            <ul class="footer-nav-list">
+              <li><a href="#">Loan Calculator</a></li>
+              <li><a href="#">Rate Guide</a></li>
+              <li><a href="#">Blog &amp; Insights</a></li>
+              <li><a href="#">FAQs</a></li>
+              <li><a href="#">Glossary</a></li>
+            </ul>
+          </div>
+
+          <!-- Company -->
+          <div class="footer-nav-col">
+            <h3 class="footer-nav-heading">Company</h3>
+            <ul class="footer-nav-list">
+              <li><a href="#">About Us</a></li>
+              <li><a href="#">Our Team</a></li>
+              <li><a href="#">Careers</a></li>
+              <li><a href="#">Contact Us</a></li>
+              <li><a href="#">MAS Licence</a></li>
+            </ul>
+          </div>
+
+        </nav>
+      </div>
+    </div>
+
+    <!-- Divider -->
+    <div class="footer-divider"></div>
+
+    <!-- Bottom bar -->
+    <div class="footer-bottom">
+      <p class="footer-copyright">
+        &copy; 2025 <strong>Tembusu Finance Pte. Ltd.</strong> All rights reserved. &nbsp;·&nbsp; Licensed by the Monetary Authority of Singapore.
+      </p>
+      <ul class="footer-legal-links">
+        <li><a href="#">Privacy Policy</a></li>
+        <li><a href="#">Terms of Use</a></li>
+        <li><a href="#">Disclaimer</a></li>
+      </ul>
+    </div>
+
+  </footer>
 
 </body>
 </html>
